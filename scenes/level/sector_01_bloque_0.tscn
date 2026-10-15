@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://dbtls0q2jn0yn" path="res://scripts/systems/objective_manager.gd" id="5_objectives"]
 [ext_resource type="Texture2D" uid="uid://bsf3s7tb46pip" path="res://assets/visual/props/wall_h.png" id="6_a6hrj"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="6_hud"]
-[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="15_pausemenu"]
 [ext_resource type="PackedScene" path="res://scenes/interact/door.tscn" id="7_door"]
 [ext_resource type="Texture2D" uid="uid://5f4x0idkib6h" path="res://assets/visual/props/pillar.png" id="7_lef1h"]
 [ext_resource type="PackedScene" path="res://scenes/interact/generator.tscn" id="8_generator"]
@@ -23,6 +22,7 @@
 [ext_resource type="Script" uid="uid://cvkwo871x0s32" path="res://scripts/interact/zero_system.gd" id="12_zero"]
 [ext_resource type="Script" uid="uid://dx1f5by32421s" path="res://scripts/interact/lore_terminal.gd" id="13_lore"]
 [ext_resource type="Script" uid="uid://b2o82qfebbjuw" path="res://scripts/interact/exit_zone.gd" id="14_exit"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="15_pausemenu"]
 [ext_resource type="Texture2D" uid="uid://bkgrrgwo0qrij" path="res://assets/visual/fx/light_soft.png" id="23_light"]
 [ext_resource type="Texture2D" uid="uid://bwphsil2do3pj" path="res://assets/visual/props/server.png" id="24_server"]
 [ext_resource type="Texture2D" uid="uid://be2sgl2d0sl4c" path="res://assets/visual/props/pipe_v.png" id="25_pipev"]
@@ -5054,8 +5054,8 @@ process_material = SubResource("PPM_zero_burst")
 position = Vector2(2690, -120)
 monitoring = false
 script = ExtResource("13_lore")
-	doc_lines = Array[String](["PROTOCOLO ZERO", "CONTENCIÓN, NO FALLO", "USUARIO DETECTADO", "AVANZAR A EXTRACCIÓN"])
-	doc_title = "Protocolo sellado — ZERO"
+doc_lines = Array[String](["PROTOCOLO ZERO", "CONTENCIÓN, NO FALLO", "USUARIO DETECTADO", "AVANZAR A EXTRACCIÓN"])
+doc_title = "Protocolo sellado — ZERO"
 doc_page = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoreTerminal" unique_id=1483577260]
@@ -5110,8 +5110,8 @@ position = Vector2(1350, 272)
 position = Vector2(800, -340)
 monitoring = false
 script = ExtResource("13_lore")
-	doc_lines = Array[String](["MANIFIESTO", "CAJAS NO LISTADAS: 2", "DESTINO: SUBNIVEL", "AVISAR AL TALLER"])
-	doc_title = "Manifiesto del almacén"
+doc_lines = Array[String](["MANIFIESTO", "CAJAS NO LISTADAS: 2", "DESTINO: SUBNIVEL", "AVISAR AL TALLER"])
+doc_title = "Manifiesto del almacén"
 doc_page = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoreAlmacen" unique_id=2041106408]
@@ -5130,8 +5130,8 @@ texture = ExtResource("28_slate")
 position = Vector2(1050, 560)
 monitoring = false
 script = ExtResource("13_lore")
-	doc_lines = Array[String](["NOTA DE R. OKONKWO", "PUERTA D2 SELLADA", "NO FORZAR: USAR TERMINAL", "VER GENERADORES"])
-	doc_title = "Nota del taller"
+doc_lines = Array[String](["NOTA DE R. OKONKWO", "PUERTA D2 SELLADA", "NO FORZAR: USAR TERMINAL", "VER GENERADORES"])
+doc_title = "Nota del taller"
 doc_page = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoreTaller" unique_id=1302632845]
@@ -5150,8 +5150,8 @@ texture = ExtResource("28_slate")
 position = Vector2(2104, -420)
 monitoring = false
 script = ExtResource("13_lore")
-	doc_lines = Array[String](["MEMORANDO", "TEMA: ZERO", "GESTIÓN ADAPTATIVA", "FALTA LA ORDEN ESCRITA"])
-	doc_title = "Memorando del laboratorio"
+doc_lines = Array[String](["MEMORANDO", "TEMA: ZERO", "GESTIÓN ADAPTATIVA", "FALTA LA ORDEN ESCRITA"])
+doc_title = "Memorando del laboratorio"
 doc_page = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoreLab" unique_id=1504939471]
@@ -5175,9 +5175,8 @@ texture = ExtResource("28_slate")
 position = Vector2(-80, 60)
 monitoring = false
 script = ExtResource("13_lore")
-	doc_lines = Array[String](["REGISTRO DE EMERGENCIA", "SUMINISTRO: APAGÓN TOTAL", "EVACUACIÓN: 68 %", "VER: GENERADORES"])
-	doc_title = "Registro de emergencia — Despertar"
-	doc_page = 1
+doc_lines = Array[String](["REGISTRO DE EMERGENCIA", "SUMINISTRO: APAGÓN TOTAL", "EVACUACIÓN: 68 %", "VER: GENERADORES"])
+doc_title = "Registro de emergencia — Despertar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoreInicio" unique_id=2000000007]
 shape = SubResource("Circle_Lore")
@@ -5195,8 +5194,8 @@ texture = ExtResource("28_slate")
 position = Vector2(860, 140)
 monitoring = false
 script = ExtResource("13_lore")
-	doc_lines = Array[String](["INFORME DE RED 12", "TERCERA FLUCTUACIÓN", "NO ES EL CABLEADO", "RUIDO ATRAE DRONES"])
-	doc_title = "Informe de red n.º 12"
+doc_lines = Array[String](["INFORME DE RED 12", "TERCERA FLUCTUACIÓN", "NO ES EL CABLEADO", "RUIDO ATRAE DRONES"])
+doc_title = "Informe de red n.º 12"
 doc_page = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoreGeneradores" unique_id=2000000008]
@@ -5215,8 +5214,8 @@ texture = ExtResource("28_slate")
 position = Vector2(2150, -60)
 monitoring = false
 script = ExtResource("13_lore")
-	doc_lines = Array[String](["VIGILANCIA NOCTURNA", "DRONES INQUIETOS", "BLOQUEO DENEGADO", "ROMPER LÍNEA DE VISIÓN"])
-	doc_title = "Turno de noche — Vigilancia"
+doc_lines = Array[String](["VIGILANCIA NOCTURNA", "DRONES INQUIETOS", "BLOQUEO DENEGADO", "ROMPER LÍNEA DE VISIÓN"])
+doc_title = "Turno de noche — Vigilancia"
 doc_page = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoreSeguridad" unique_id=2000000009]
@@ -5235,8 +5234,8 @@ texture = ExtResource("28_slate")
 position = Vector2(2480, 330)
 monitoring = false
 script = ExtResource("13_lore")
-	doc_lines = Array[String](["ÚLTIMA ENTRADA", "BAJARON, NO SUBIERON", "SEGUIR LA LUZ", "SECTOR 02: SUBNIVEL"])
-	doc_title = "Última entrada — Extracción"
+doc_lines = Array[String](["ÚLTIMA ENTRADA", "BAJARON, NO SUBIERON", "SEGUIR LA LUZ", "SECTOR 02: SUBNIVEL"])
+doc_title = "Última entrada — Extracción"
 doc_page = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoreExtraccion" unique_id=2000000010]
