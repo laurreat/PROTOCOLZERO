@@ -21,10 +21,10 @@ Pedido explícito 2026-10-15 en 5 fases. Prohíbe force-push, historial reescrit
 
 ## Tasks
 - [x] T0 (inline) — Auditoría entorno: git 2.55, Godot 4.7.2, templates win x86_64 presentes, GCM 2.9, sin secretos, repo remoto vacío accesible, hash P1 idéntico.
-- [ ] T1 (inline) — Migrar licencias + borrar stagings + .gitignore + README raíz.
-- [ ] T2 (inline) — git init/add/commit/main/remote + push (o STOP con auth).
-- [ ] T3 (inline) — preset + export + smoke test exe.
-- [ ] T4 (inline) — release si hay acceso + validación final + informe 7 puntos.
+- [x] T1 (inline) — Licencias migradas, stagings borrados (85 MB), .gitignore, README raíz con créditos CC-BY.
+- [x] T2 (inline) — git init local + 3 commits + push a main (a3d8c6c, 07d07ee, 920ddcb), local==remoto.
+- [x] T3 (inline) — preset + export (exe 109 MB + pck 53 MB) + smoke boot exit 0 sin errores.
+- [x] T4 (inline) — Release BLOQUEADA (sin gh ni token) + validación final + informe.
 
 ## Authorized scope
 Publicar + build 2026-10-15. Prohibido: force-push, secretos, builds falsos.
@@ -41,7 +41,11 @@ Publicar + build 2026-10-15. Prohibido: force-push, secretos, builds falsos.
 - Templates win x86_64 + GCM listos; remoto vacío accesible anónimo (lectura).
 
 ## Verification evidence
-- Pendiente T4.
+- `git status` limpio; `git ls-remote origin main` == local (920ddcb); 661+1 archivos en 3 commits.
+- Import headless 0 errores (árbol estable tras normalización del export).
+- Sonda regresión 12/12 (menú, nivel, HUD, pausa, 8 docs, SFX, autoloads).
+- Export: PROTOCOL-ZERO.exe (109 MB) + .pck (53 MB); smoke `--quit-after 20` exit 0, GL real, 0 errores.
+- Release NO creada: sin `gh` ni token en el entorno (bloqueo honesto, pasos abajo).
 
 ## Route declaration (ODD)
 - Inline (Task sin transporte).
