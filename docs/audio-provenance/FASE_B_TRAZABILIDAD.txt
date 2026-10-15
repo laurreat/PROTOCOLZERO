@@ -1,0 +1,53 @@
+PROTOCOL: ZERO — Fase B: trazabilidad audio (2026-10-13)
+Origen -> copia final (originales PRESERVADOS, no sobrescritos)
+===============================================================
+
+PERSONA 1 MUSICA (CC0, sin atribucion obligatoria):
+  MUSICA/01_menu_principal_title.mp3 (SRG774)
+    -> assets/audio/music/menu/01_menu_principal_title.mp3 [Audio.MusicState.MENU]
+  MUSICA/02_exploracion_sector.mp3 (SRG774)
+    -> assets/audio/music/exploration/02_exploracion_sector.mp3 [EXPLORATION]
+  MUSICA/04_sigilo_pulse.mp3 (SRG774)
+    -> assets/audio/music/stealth/04_sigilo_pulse.mp3 [STEALTH]
+  MUSICA/08_tension_menacing_otherworld.mp3 (Ruskerdax)
+    -> assets/audio/music/tension/08_tension_menacing_otherworld.mp3 [TENSION]
+  MUSICA/05_tension_urgent.mp3 (SRG774)
+    -> assets/audio/music/chase/05_tension_urgent.mp3 [CHASE]
+  MUSICA/06_peligro_transmission.mp3 (SRG774)
+    -> assets/audio/music/danger/06_peligro_transmission.mp3 [overlay DANGER]
+  MUSICA/03_ambiente_airy.mp3 -> SIN USO (reserva exploracion)
+  MUSICA/07_victoria_victory.mp3 (SRG774)
+    -> assets/audio/sfx/protocol/07_victoria_victory.mp3 [Sfx.win()]
+
+PERSONA 1 AMBIENTES (-> assets/audio/ambience/, mismos nombres):
+  05_maquinaria_titan_powerplant.mp3 (Eric Matyas, CC-BY: credito pendiente)
+    -> loop con energia ON [sector_01_bloque_0._on_energy_security]
+  21_peligro_alarm_00.mp3 (Little Robot, CC-BY: credito pendiente)
+    -> sting [Sfx.alarm(): SECURITY ONLINE + CHASE]
+  Resto (ventilacion/hum/maquinaria/electrica/servidores/agua): integrados
+  como archivos, cableado selectivo pendiente de Fase H.
+
+PERSONA 2 WAV (sinteticos originales, licencia libre segun LEEME.txt):
+  Ya estaban en assets/audio/sfx/{ui,terminals,doors}/. Cableados en Fase B:
+  puertas: 01_abrir/02_cerrar/03_desbloqueo/04_bloqueada/05_fallo
+  terminales: 01_encendido/03_beep/05_escaneo/06_permitido/07_denegado
+  UI: 04_confirmacion [Sfx.ui_ok], 07_error [Sfx.ui_deny]
+
+PERSONA 4 OGG (sfx/{doors,security,unsorted}/*.ogg): NO CABLEADOS.
+  Licencia del RAR sin archivo de licencia -> solo pruebas locales,
+  excluidos de publicacion (ver README_LICENCIAS_Y_CLASIFICACION.txt).
+
+Codigo:
+  scripts/audio/sfx.gd: presets file-first con fallback procedural
+    (door_open/close/locked/unlock/damaged, terminal_ok/deny/beep/boot/scan,
+    generator_on, ui_ok/ui_deny, alarm, win). lose/pulse_sweep procedurales.
+  scripts/managers/audio_manager.gd: ruta music corregida a
+    res://assets/audio/music/ + bus Ambience + play/stop_ambience (1 voz).
+  scripts/level/sector_01_bloque_0.gd: energia ON/OFF <-> ambiente;
+    sting DETECT con cooldown 3s; musica adaptativa intacta.
+  scripts/ui/main_menu.gd: GAMEPLAY_SCENE -> sector_01_bloque_0.tscn
+    (la escena anterior no existe; Play estaba roto).
+
+Verificacion: fi_probe/probe_audio.gd 36/36 PASS (headless real).
+Licencias CC-BY (bart, dklon, Matyas, Little Robot, OLPC, Blender Fdn):
+  requieren atribucion antes de publicar. NO apto para publicacion aun.

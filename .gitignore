@@ -1,0 +1,15 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Export builds (rebuilt from export presets; shipped via Releases, not git)
+builds/
+
+# OS / editor junk
+Thumbs.db
+.DS_Store
+*.log
+
+# Unlicensed reference art (kept local only, not for redistribution)
+img/top_down_detailed_isometric_overhead_style_sci_fi.png
+img/top_down_detailed_isometric_overhead_style_sci_fi.png.import

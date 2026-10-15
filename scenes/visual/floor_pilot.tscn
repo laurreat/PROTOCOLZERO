@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/visual/floor/plate_standard.png" id="1_plate"]
+
+[node name="FloorPilot" type="Node2D"]
+
+[node name="T00" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_plate")
+
+[node name="T10" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(64, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_plate")
+
+[node name="T01" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_plate")
+
+[node name="T11" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(64, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_plate")

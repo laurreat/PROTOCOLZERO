@@ -1,0 +1,11 @@
+PERSONA 2 - UI TERMINALES PUERTAS
+Paquete de 24 efectos de sonido originales sintetizados para prototipos de videojuegos/instalaciones sci-fi.
+
+Carpetas:
+- UI: hover, click, selección, confirmación, cancelar, volver, error y notificación.
+- TERMINALES: encendido, tecleo digital, beep, procesamiento, escaneo, acceso permitido/denegado y error.
+- PUERTAS: abrir, cerrar, desbloqueo, bloqueada, fallo mecánico, hidráulica, sello y puerta sci-fi.
+
+Formato: WAV PCM, mono, 44.1 kHz, 16-bit.
+Los sonidos son diseños sintéticos originales, no descargas de las webs mencionadas.
+Puedes recortarlos, mezclarlos o ajustar volumen según las necesidades del proyecto.

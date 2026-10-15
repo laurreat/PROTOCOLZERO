@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/interact/door.gd" id="1_door"]
+[ext_resource type="Script" path="res://scripts/interact/door_range.gd" id="2_range"]
+[ext_resource type="Texture2D" path="res://assets/visual/props/wall_v.png" id="3_jamb"]
+[ext_resource type="Texture2D" path="res://assets/visual/props/door_slab.png" id="4_slab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_block"]
+size = Vector2(32, 104)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_range"]
+radius = 64.0
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_door")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_block")
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.8, 0.22, 0.22, 1)
+polygon = PackedVector2Array(-14, -50, 14, -50, 14, 50, -14, 50)
+
+[node name="SlabArt" type="Sprite2D" parent="Visual"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_slab")
+
+[node name="JambL_Top" type="Sprite2D" parent="."]
+position = Vector2(-22, -32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_jamb")
+
+[node name="JambL_Bot" type="Sprite2D" parent="."]
+position = Vector2(-22, 32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_jamb")
+
+[node name="JambR_Top" type="Sprite2D" parent="."]
+position = Vector2(22, -32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_jamb")
+
+[node name="JambR_Bot" type="Sprite2D" parent="."]
+position = Vector2(22, 32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_jamb")
+
+[node name="StatusLamp" type="Polygon2D" parent="."]
+color = Color(1, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, -68, 7, -61, 0, -54, -7, -61)
+
+[node name="InteractRange" type="Area2D" parent="."]
+script = ExtResource("2_range")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange"]
+shape = SubResource("CircleShape2D_range")

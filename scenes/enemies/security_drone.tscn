@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/security_drone.gd" id="1_drone"]
+[ext_resource type="Texture2D" path="res://assets/visual/enemies/security_drone/drone_patrol_south.png" id="2_detail"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_drone"]
+radius = 14.0
+
+[node name="SecurityDrone" type="CharacterBody2D"]
+script = ExtResource("1_drone")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_drone")
+
+[node name="VisionCone" type="Polygon2D" parent="."]
+color = Color(0.25, 0.5, 1, 0.1)
+polygon = PackedVector2Array(0, 0, 200, -70, 200, 70)
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.25, 0.5, 1, 1)
+polygon = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+
+[node name="Eye" type="Polygon2D" parent="."]
+color = Color(0.95, 0.98, 1, 1)
+polygon = PackedVector2Array(15, 0, 4, -7, 4, 7)
+
+[node name="Detail" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_detail")
+
+[node name="StateLabel" type="Label" parent="."]
+offset_left = -30.0
+offset_top = -66.0
+offset_right = 30.0
+offset_bottom = -38.0
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 12.0
+path_desired_distance = 8.0

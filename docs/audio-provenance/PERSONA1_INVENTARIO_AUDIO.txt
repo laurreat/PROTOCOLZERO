@@ -1,0 +1,218 @@
+PROTOCOL: ZERO — PERSONA 1: MÚSICA Y AMBIENTES
+Inventario de audio (versión mejorada)
+Estilo objetivo: sci-fi industrial, tecnológico, oscuro, misterioso y tenso.
+Todos los archivos conservados en su formato original.
+
+================================================================================
+MÚSICA (8 pistas ambientales / loopables)
+================================================================================
+
+01_menu_principal_title.mp3
+  Fuente: Dark Sci-Fi Audio Pack | OpenGameArt
+  Autor: SRG774
+  Licencia: CC0
+  Uso: Menú principal (loop)
+  Notas: Suave, misterioso, no épico.
+
+02_exploracion_sector.mp3
+  Fuente: Dark Sci-Fi Audio Pack | OpenGameArt
+  Autor: SRG774
+  Licencia: CC0
+  Uso: Exploración / ambiente misterioso
+  Notas: Ambient alien/tech suave.
+
+03_ambiente_airy.mp3
+  Fuente: Dark Sci-Fi Audio Pack | OpenGameArt
+  Autor: SRG774
+  Licencia: CC0
+  Uso: Exploración ligera / atmósfera abierta
+  Notas: Etéreo, flotante, no invasivo.
+
+04_sigilo_pulse.mp3
+  Fuente: Dark Sci-Fi Audio Pack | OpenGameArt
+  Autor: SRG774
+  Licencia: CC0
+  Uso: Sigilo / pulso rítmico bajo
+  Notas: Bajo perfil, continuo.
+
+05_tension_urgent.mp3
+  Fuente: Dark Sci-Fi Audio Pack | OpenGameArt
+  Autor: SRG774
+  Licencia: CC0
+  Uso: Tensión / persecución / alto riesgo
+  Notas: Driving sin ser épico.
+
+06_peligro_transmission.mp3
+  Fuente: Dark Sci-Fi Audio Pack | OpenGameArt
+  Autor: SRG774
+  Licencia: CC0
+  Uso: Peligro / momento crítico / transición
+  Notas: Cinemático, ominoso.
+
+07_victoria_victory.mp3
+  Fuente: Dark Sci-Fi Audio Pack | OpenGameArt
+  Autor: SRG774
+  Licencia: CC0
+  Uso: Victoria / nivel completado
+  Notas: Corto y satisfactorio.
+
+08_tension_menacing_otherworld.mp3
+  Fuente: Menacing Otherworld | OpenGameArt
+  Autor: Ruskerdax
+  Licencia: CC0
+  Uso: Tensión industrial / exploración hostil
+  Notas: Ambient industrial oscuro, perfecto para instalación tecnológica amenazante.
+
+================================================================================
+AMBIENTES (27 archivos)
+================================================================================
+
+--- Instalación / Ambiente general ---
+01_instalacion_dark_factory.ogg
+  Fuente: Dark Factory | OpenGameArt
+  Autor: bart
+  Licencia: CC-BY 3.0 (atribuir + link a opengameart.org)
+  Uso: Ambiente general de fábrica/instalación abandonada o oscura
+  Notas: Tuneless, industrial, creepy.
+
+04_tecnologico_scifi_background.ogg
+  Fuente: Sci-Fi Background noise | OpenGameArt
+  Autor: Spring Spring
+  Licencia: CC0
+  Uso: Fondo tecnológico continuo
+  Notas: Ruido de fondo sci-fi limpio.
+
+05_maquinaria_titan_powerplant.mp3
+  Fuente: Titan Powerplant | OpenGameArt
+  Autor: Eric Matyas (Soundimage.org)
+  Licencia: CC-BY 3.0 / 4.0 (atribuir: "Titan Powerplant" by Eric Matyas Soundimage.org)
+  Uso: Generador / planta de energía / maquinaria pesada
+  Notas: Drone eerie de powerplant subterráneo.
+
+--- Ventilación / Hum ---
+02_ventilacion_ambient_hum.mp3
+  Fuente: Ambient Spaceship Hums | OpenGameArt
+  Autor: dklon
+  Licencia: CC-BY 3.0 (atribuir: dklon)
+  Uso: Hum de ventilación / ambiente de instalación (estilo Nostromo)
+  Notas: Hum industrial realista.
+
+03_ventilacion_ambient_hum2.mp3
+  Fuente: Ambient Spaceship Hums | OpenGameArt
+  Autor: dklon
+  Licencia: CC-BY 3.0 (atribuir: dklon)
+  Uso: Variante de hum de ventilación
+  Notas: Más corto, buen loop.
+
+11_ventilacion_fan.wav
+  Fuente: 12 Ambient Machine Sounds | OpenGameArt (OLPC/Berklee)
+  Autor: Michael Brigida y estudiantes (OLPC)
+  Licencia: CC-BY 3.0
+  Uso: Ventilador / aire acondicionado industrial
+  Notas: Grabación real de máquina.
+
+--- Maquinaria / Motores ---
+06_maquinaria_ambient_machine1.wav
+  Fuente: 12 Ambient Machine Sounds | OpenGameArt
+  Autor: Michael Brigida y estudiantes (OLPC)
+  Licencia: CC-BY 3.0
+  Uso: Ambiente de maquinaria general
+  Notas: Loop industrial.
+
+07_maquinaria_ambient_machine2.wav
+  Fuente: 12 Ambient Machine Sounds | OpenGameArt
+  Autor: Michael Brigida y estudiantes (OLPC)
+  Licencia: CC-BY 3.0
+  Uso: Ambiente de maquinaria general (variante)
+  Notas: Más largo.
+
+09_maquinaria_engine_noise.wav
+  Fuente: 12 Ambient Machine Sounds | OpenGameArt
+  Autor: Michael Brigida y estudiantes (OLPC)
+  Licencia: CC-BY 3.0
+  Uso: Motor / maquinaria pesada
+  Notas: Grabación real.
+
+10_maquinaria_aircompressor.wav
+  Fuente: 12 Ambient Machine Sounds | OpenGameArt
+  Autor: Michael Brigida y estudiantes (OLPC)
+  Licencia: CC-BY 3.0
+  Uso: Compresor de aire / sistema neumático
+  Notas: Ideal para instalaciones técnicas.
+
+16_maquinaria_engineCircular_000.ogg … 20_maquinaria_engineCircular_004.ogg
+  Fuente: Sci-Fi Sounds | OpenGameArt
+  Autor: Kenney
+  Licencia: CC0
+  Uso: Motores circulares / maquinaria rotativa
+  Notas: 5 variantes, cortas y limpias.
+
+--- Electricidad / Servidores ---
+08_electricidad_electric_noise.wav
+  Fuente: 12 Ambient Machine Sounds | OpenGameArt
+  Autor: Michael Brigida y estudiantes (OLPC)
+  Licencia: CC-BY 3.0
+  Uso: Ruido eléctrico / zumbido de sistemas
+  Notas: Grabación real de ruido eléctrico.
+
+12_servidores_computerNoise_000.ogg … 15_servidores_computerNoise_003.ogg
+  Fuente: Sci-Fi Sounds | OpenGameArt
+  Autor: Kenney
+  Licencia: CC0
+  Uso: Ruido de servidores / computadoras / terminales
+  Notas: 4 variantes cortas.
+
+--- Peligro / Alarmas ---
+21_peligro_alarm_00.mp3
+  Fuente: Sci-Fi Sound Effects Library | OpenGameArt
+  Autor: Little Robot Sound Factory
+  Licencia: CC-BY 3.0 (atribuir: Little Robot Sound Factory - www.littlerobotsoundfactory.com)
+  Uso: Alarma de peligro / alerta de sistema
+  Notas: Loop corto.
+
+22_peligro_alarm_01.mp3
+  Fuente: Sci-Fi Sound Effects Library | OpenGameArt
+  Autor: Little Robot Sound Factory
+  Licencia: CC-BY 3.0 (atribuir: Little Robot Sound Factory - www.littlerobotsoundfactory.com)
+  Uso: Alarma de peligro (variante)
+  Notas: Loop corto.
+
+================================================================================
+RESUMEN
+================================================================================
+Música: 8 pistas (todas loopables, estilo dark ambient / industrial)
+Ambientes: 22 archivos (instalación, ventilación, maquinaria, electricidad, servidores, alarmas)
+
+Prioridad de licencias:
+- CC0: SRG774, Kenney, Ruskerdax, Spring Spring → sin atribución obligatoria
+- CC-BY 3.0/4.0: bart, dklon, Eric Matyas, Little Robot, OLPC/Berklee → requieren atribución
+
+Coherencia: todos apuntan a una instalación tecnológica industrial oscura y tensa (nada arcade, nada épico espacial, nada caricaturesco).
+
+
+
+--- Agua / Goteo ---
+23_agua_goteo_loop.flac
+  Fuente: Dripping water loop | OpenGameArt
+  Autor: Independent.nu (submitted by qubodup)
+  Licencia: CC0
+  Uso: Ambiente de goteo continuo (sótano / instalación húmeda / tuberías con fuga)
+  Notas: Loop de goteo realista, ideal para zonas deterioradas de la instalación.
+
+24_agua_goteo_1.flac
+25_agua_goteo_2.flac
+26_agua_goteo_3.flac
+27_agua_goteo_4.flac
+  Fuente: Ambient Water Drips | OpenGameArt
+  Autor: Blender Foundation (Yo Frankie!)
+  Licencia: CC-BY 3.0 (atribuir: Blender Foundation)
+  Uso: Gotas individuales / variaciones de goteo
+  Notas: 4 variantes cortas y limpias, perfectas para capas o eventos específicos de filtración.
+
+================================================================================
+RESUMEN ACTUALIZADO
+================================================================================
+Música: 8 pistas
+Ambientes: 27 archivos (instalación, ventilación, maquinaria, electricidad, servidores, alarmas + agua/goteo)
+
+Total: 35 archivos de audio + este inventario.

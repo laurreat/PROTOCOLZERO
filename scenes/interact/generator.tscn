@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/interact/generator.gd" id="1_generator"]
+[ext_resource type="Texture2D" path="res://assets/visual/props/generator_machine.png" id="2_machine"]
+[ext_resource type="Texture2D" path="res://assets/visual/fx/light_soft.png" id="3_puff"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_range"]
+radius = 60.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_block"]
+size = Vector2(80, 80)
+
+[sub_resource type="ParticleProcessMaterial" id="PPM_steam"]
+direction = Vector3(0, -1, 0)
+spread = 25.0
+gravity = Vector3(0, -15, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 30.0
+scale_min = 0.04
+scale_max = 0.08
+color = Color(0.7, 0.8, 0.85, 0.35)
+
+[node name="Generator" type="Area2D"]
+script = ExtResource("1_generator")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_range")
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker"]
+shape = SubResource("RectangleShape2D_block")
+
+[node name="Machine" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_machine")
+
+[node name="Visual" type="Polygon2D" parent="."]
+position = Vector2(0, -56)
+color = Color(0.85, 0.25, 0.25, 1)
+polygon = PackedVector2Array(0, -8, 8, 0, 0, 8, -8, 0)
+
+[node name="Core" type="Polygon2D" parent="."]
+color = Color(1, 0.9, 0.6, 1)
+polygon = PackedVector2Array(8, 0, 0, 8, -8, 0, 0, -8)
+
+[node name="Steam" type="GPUParticles2D" parent="."]
+position = Vector2(0, -20)
+amount = 12
+lifetime = 1.6
+emitting = false
+process_material = SubResource("PPM_steam")
+texture = ExtResource("3_puff")

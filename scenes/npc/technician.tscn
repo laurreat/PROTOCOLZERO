@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/technician.gd" id="1_technician"]
+[ext_resource type="Script" path="res://scripts/npc/technician_range.gd" id="2_range"]
+[ext_resource type="Texture2D" path="res://assets/visual/characters/tech/tech_idle_south.png" id="3_detail"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_range"]
+radius = 64.0
+
+[node name="Technician" type="CharacterBody2D"]
+script = ExtResource("1_technician")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_body")
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.2, 0.9, 0.9, 1)
+polygon = PackedVector2Array(-16, 12, 16, 12, 0, -16)
+
+[node name="Stripe" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 1)
+polygon = PackedVector2Array(-4, 8, 4, 8, 0, 0)
+
+[node name="StatusLabel" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -64.0
+offset_right = 60.0
+offset_bottom = -40.0
+theme_override_font_sizes/font_size = 14
+text = "Tech"
+horizontal_alignment = 1
+
+[node name="InteractRange" type="Area2D" parent="."]
+script = ExtResource("2_range")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange"]
+shape = SubResource("CircleShape2D_range")
+
+[node name="Detail" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_detail")

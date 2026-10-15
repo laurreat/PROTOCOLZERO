@@ -1,0 +1,1520 @@
+[gd_scene format=3 uid="uid://bl1apmh5cr2bq"]
+
+[ext_resource type="Script" uid="uid://dd0ie3cicvu7l" path="res://scripts/ui/main_menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://drpwlsbii6yv6" path="res://img/fondo menu principal.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://d3rlgfexhcba5" path="res://assets/ui/icons/book.svg" id="4_book"]
+[ext_resource type="Texture2D" uid="uid://c1nyirbbthgr4" path="res://assets/ui/icons/gear.svg" id="5_gear"]
+[ext_resource type="Texture2D" uid="uid://bndnlfnlad83" path="res://assets/ui/icons/exit.svg" id="6_exit"]
+[ext_resource type="Script" uid="uid://b088yk0utgbkk" path="res://scripts/ui/title_glitch.gd" id="7_glitch"]
+[ext_resource type="Texture2D" uid="uid://3krffaccpt8g" path="res://assets/ui/icons/play_red.svg" id="8_playred"]
+[ext_resource type="Texture2D" uid="uid://657pic2es38m" path="res://assets/ui/icons/gear_red.svg" id="10_gearred"]
+[ext_resource type="Texture2D" uid="uid://by61t7wn6gtkf" path="res://assets/ui/frames/btn_frame_gray.svg" id="12_grayframe"]
+[ext_resource type="Texture2D" uid="uid://c1qr2wpepxg3c" path="res://assets/ui/frames/btn_frame_red.svg" id="13_redframe"]
+[ext_resource type="Texture2D" uid="uid://dmkj86u7kw6n8" path="res://assets/ui/frames/btn_frame_red_pressed.svg" id="14_pressedframe"]
+[ext_resource type="Texture2D" uid="uid://bia1xgg63cdfo" path="res://assets/ui/frames/btn_frame_red_glow.svg" id="15_glowframe"]
+[ext_resource type="Texture2D" uid="uid://c2c22axemyrnq" path="res://assets/ui/frames/panel_frame.svg" id="16_frame"]
+[ext_resource type="Texture2D" uid="uid://cwfjw0jy4bg2n" path="res://assets/ui/icons/reticle.svg" id="17_reticle"]
+[ext_resource type="Texture2D" uid="uid://bj31wwa15r5gi" path="res://assets/ui/icons/terminal.svg" id="18_terminal"]
+[ext_resource type="Texture2D" uid="uid://n2rwfdhw2gyi" path="res://assets/ui/icons/pulse.svg" id="19_pulse"]
+[ext_resource type="Texture2D" uid="uid://c23uvyshkbgjq" path="res://assets/ui/icons/drone.svg" id="20_drone"]
+[ext_resource type="Script" uid="uid://cffr3b8yc37ww" path="res://scripts/ui/tech_slider.gd" id="21_tech"]
+[ext_resource type="Texture2D" uid="uid://clnbglfd7pp3h" path="res://assets/ui/icons/volume.svg" id="22_volume"]
+[ext_resource type="Texture2D" uid="uid://bhhsktmy657cb" path="res://assets/ui/icons/music_note.svg" id="23_music"]
+[ext_resource type="Texture2D" uid="uid://dm0ouw53ipfau" path="res://assets/ui/icons/waves.svg" id="24_waves"]
+[ext_resource type="Texture2D" uid="uid://c2epph2a5pmg7" path="res://assets/ui/icons/window.svg" id="25_window"]
+[ext_resource type="Texture2D" uid="uid://d3x4sso65tc5j" path="res://assets/ui/icons/resolution.svg" id="26_res"]
+
+[sub_resource type="Gradient" id="Grad"]
+colors = PackedColorArray(0.03, 0.04, 0.06, 0.88, 0.03, 0.04, 0.06, 0)
+
+[sub_resource type="GradientTexture2D" id="GradTex"]
+gradient = SubResource("Grad")
+width = 256
+height = 256
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(0.62, 0.5)
+
+[sub_resource type="SystemFont" id="SysBold"]
+font_names = PackedStringArray("Bahnschrift", "Arial")
+font_weight = 700
+subpixel_positioning = 0
+
+[sub_resource type="FontVariation" id="VarTitle"]
+base_font = SubResource("SysBold")
+variation_opentype = {
+2003072104: 100,
+2003265652: 700
+}
+spacing_glyph = 2
+
+[sub_resource type="SystemFont" id="SysBlack"]
+font_names = PackedStringArray("Bahnschrift", "Arial Black", "Arial")
+font_weight = 900
+subpixel_positioning = 0
+
+[sub_resource type="FontVariation" id="VarZero"]
+base_font = SubResource("SysBlack")
+variation_opentype = {
+2003072104: 100,
+2003265652: 900
+}
+spacing_glyph = 2
+
+[sub_resource type="SystemFont" id="SysReg"]
+font_names = PackedStringArray("Bahnschrift", "Arial")
+subpixel_positioning = 0
+
+[sub_resource type="FontVariation" id="VarTag"]
+base_font = SubResource("SysReg")
+spacing_glyph = 4
+
+[sub_resource type="FontVariation" id="VarButton"]
+base_font = SubResource("SysBold")
+variation_opentype = {
+2003072104: 100,
+2003265652: 700
+}
+spacing_glyph = 1
+
+[sub_resource type="StyleBoxTexture" id="BtnTexGlow"]
+content_margin_left = 28.0
+content_margin_right = 20.0
+texture = ExtResource("15_glowframe")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 24.0
+texture_margin_bottom = 12.0
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="BtnTexPressed"]
+content_margin_left = 28.0
+content_margin_right = 20.0
+texture = ExtResource("14_pressedframe")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 16.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="BtnTexRed"]
+content_margin_left = 28.0
+content_margin_right = 20.0
+texture = ExtResource("13_redframe")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 16.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="BtnTexGray"]
+content_margin_left = 28.0
+content_margin_right = 20.0
+texture = ExtResource("12_grayframe")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 16.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="PanelFrame"]
+content_margin_left = 30.0
+content_margin_top = 24.0
+content_margin_right = 30.0
+content_margin_bottom = 24.0
+texture = ExtResource("16_frame")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="XNormal"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.11, 0.04, 0.05, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.07, 0.09, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="BtnPressed"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.4, 0.09, 0.11, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.11, 0.14, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="XHover"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.23, 0.06, 0.08, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.27, 0.31, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="KeyCapGray"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05, 0.08, 0.11, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.32, 0.38, 0.45, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="KeyCapCyan"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05, 0.08, 0.11, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.32, 0.78, 0.91, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="BtnNormal"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.05, 0.08, 0.11, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.32, 0.38, 0.45, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="BtnHover"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.09, 0.13, 0.18, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9, 0.11, 0.14, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="BtnFocus"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.11, 0.14, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="MainMenu" type="Control" unique_id=2055819938]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1295035182]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Shade" type="TextureRect" parent="." unique_id=808320744]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradTex")
+expand_mode = 1
+
+[node name="LeftMargin" type="MarginContainer" parent="." unique_id=289481780]
+layout_mode = 0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_vertical = 2
+
+[node name="MainVBox" type="VBoxContainer" parent="LeftMargin" unique_id=2100538232]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TitleProto" type="Label" parent="LeftMargin/MainVBox" unique_id=1160845697]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("VarTitle")
+theme_override_font_sizes/font_size = 60
+text = "PROTOCOL:"
+script = ExtResource("7_glitch")
+
+[node name="GhostR" type="Label" parent="LeftMargin/MainVBox/TitleProto" unique_id=2030441881]
+modulate = Color(1, 1, 1, 0.35)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.5
+offset_right = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.33, 1)
+theme_override_fonts/font = SubResource("VarTitle")
+theme_override_font_sizes/font_size = 60
+text = "PROTOCOL:"
+
+[node name="GhostC" type="Label" parent="LeftMargin/MainVBox/TitleProto" unique_id=414727642]
+modulate = Color(1, 1, 1, 0.35)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.5
+offset_right = -1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.27, 0.85, 0.93, 1)
+theme_override_fonts/font = SubResource("VarTitle")
+theme_override_font_sizes/font_size = 60
+text = "PROTOCOL:"
+
+[node name="TitleZero" type="Label" parent="LeftMargin/MainVBox" unique_id=1284530726]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.11, 0.14, 1)
+theme_override_fonts/font = SubResource("VarZero")
+theme_override_font_sizes/font_size = 100
+text = "ZERO"
+script = ExtResource("7_glitch")
+
+[node name="GhostR" type="Label" parent="LeftMargin/MainVBox/TitleZero" unique_id=1016534276]
+modulate = Color(1, 1, 1, 0.35)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.5
+offset_right = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.33, 1)
+theme_override_fonts/font = SubResource("VarZero")
+theme_override_font_sizes/font_size = 100
+text = "ZERO"
+
+[node name="GhostC" type="Label" parent="LeftMargin/MainVBox/TitleZero" unique_id=972513035]
+modulate = Color(1, 1, 1, 0.35)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.5
+offset_right = -1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.27, 0.85, 0.93, 1)
+theme_override_fonts/font = SubResource("VarZero")
+theme_override_font_sizes/font_size = 100
+text = "ZERO"
+
+[node name="Tagline" type="Label" parent="LeftMargin/MainVBox" unique_id=2025543865]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.68, 0.72, 0.77, 1)
+theme_override_fonts/font = SubResource("VarTag")
+theme_override_font_sizes/font_size = 20
+text = "EL APAGÓN FUE SOLO EL COMIENZO."
+
+[node name="TitleGap" type="Control" parent="LeftMargin/MainVBox" unique_id=2018424775]
+custom_minimum_size = Vector2(1, 16)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="LeftMargin/MainVBox" unique_id=245947137]
+custom_minimum_size = Vector2(480, 60)
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../HelpButton")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 24
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("BtnTexGlow")
+theme_override_styles/pressed = SubResource("BtnTexPressed")
+theme_override_styles/hover = SubResource("BtnTexRed")
+theme_override_styles/focus = SubResource("BtnTexRed")
+text = "JUGAR"
+icon = ExtResource("8_playred")
+alignment = 0
+
+[node name="Divider" type="ColorRect" parent="LeftMargin/MainVBox/PlayButton" unique_id=171084299]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -18.0
+offset_right = 72.0
+offset_bottom = 18.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="HelpButton" type="Button" parent="LeftMargin/MainVBox" unique_id=2091356066]
+custom_minimum_size = Vector2(480, 60)
+layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+theme_override_colors/font_color = Color(0.85, 0.88, 0.91, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 24
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("BtnTexGray")
+theme_override_styles/pressed = SubResource("BtnTexPressed")
+theme_override_styles/hover = SubResource("BtnTexRed")
+theme_override_styles/focus = SubResource("BtnTexRed")
+text = "INSTRUCCIONES"
+icon = ExtResource("4_book")
+alignment = 0
+
+[node name="Divider" type="ColorRect" parent="LeftMargin/MainVBox/HelpButton" unique_id=6426419]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -18.0
+offset_right = 72.0
+offset_bottom = 18.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.32, 0.38, 0.45, 1)
+
+[node name="SettingsButton" type="Button" parent="LeftMargin/MainVBox" unique_id=873862361]
+custom_minimum_size = Vector2(480, 60)
+layout_mode = 2
+focus_neighbor_top = NodePath("../HelpButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_colors/font_color = Color(0.85, 0.88, 0.91, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 24
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("BtnTexGray")
+theme_override_styles/pressed = SubResource("BtnTexPressed")
+theme_override_styles/hover = SubResource("BtnTexRed")
+theme_override_styles/focus = SubResource("BtnTexRed")
+text = "CONFIGURACIÓN"
+icon = ExtResource("5_gear")
+alignment = 0
+
+[node name="Divider" type="ColorRect" parent="LeftMargin/MainVBox/SettingsButton" unique_id=212163683]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -18.0
+offset_right = 72.0
+offset_bottom = 18.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.32, 0.38, 0.45, 1)
+
+[node name="QuitButton" type="Button" parent="LeftMargin/MainVBox" unique_id=1069850958]
+custom_minimum_size = Vector2(480, 60)
+layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+theme_override_colors/font_color = Color(0.85, 0.88, 0.91, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 24
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("BtnTexGray")
+theme_override_styles/pressed = SubResource("BtnTexPressed")
+theme_override_styles/hover = SubResource("BtnTexRed")
+theme_override_styles/focus = SubResource("BtnTexRed")
+text = "SALIR"
+icon = ExtResource("6_exit")
+alignment = 0
+
+[node name="Divider" type="ColorRect" parent="LeftMargin/MainVBox/QuitButton" unique_id=138236274]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -18.0
+offset_right = 72.0
+offset_bottom = 18.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.32, 0.38, 0.45, 1)
+
+[node name="NavGap" type="Control" parent="LeftMargin/MainVBox" unique_id=1067936380]
+custom_minimum_size = Vector2(1, 8)
+layout_mode = 2
+
+[node name="NavHint" type="Label" parent="LeftMargin/MainVBox" unique_id=562993710]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41, 0.47, 0.54, 1)
+theme_override_fonts/font = SubResource("SysReg")
+theme_override_font_sizes/font_size = 15
+text = "W/S o Flechas para navegar · ENTER para elegir · ESC para cerrar"
+
+[node name="Dim" type="ColorRect" parent="." unique_id=653935620]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="InstructionsPanel" type="PanelContainer" parent="." unique_id=682325312]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -300.0
+offset_right = 460.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PanelFrame")
+
+[node name="VBox" type="VBoxContainer" parent="InstructionsPanel" unique_id=913111446]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="HeaderBar" type="HBoxContainer" parent="InstructionsPanel/VBox" unique_id=144488076]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RedTick" type="ColorRect" parent="InstructionsPanel/VBox/HeaderBar" unique_id=1237739294]
+custom_minimum_size = Vector2(6, 30)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="HelpTitle" type="Label" parent="InstructionsPanel/VBox/HeaderBar" unique_id=1988574420]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("VarTitle")
+theme_override_font_sizes/font_size = 30
+text = "INSTRUCCIONES"
+
+[node name="HeaderSpacer" type="Control" parent="InstructionsPanel/VBox/HeaderBar" unique_id=1693331860]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="SysTag" type="Label" parent="InstructionsPanel/VBox/HeaderBar" unique_id=1834742613]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.39, 0.46, 0.53, 1)
+theme_override_fonts/font = SubResource("SysReg")
+theme_override_font_sizes/font_size = 11
+text = "// MANUAL_DEL_SISTEMA"
+
+[node name="CloseButton" type="Button" parent="InstructionsPanel/VBox/HeaderBar" unique_id=166986763]
+custom_minimum_size = Vector2(46, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("XNormal")
+theme_override_styles/pressed = SubResource("BtnPressed")
+theme_override_styles/hover = SubResource("XHover")
+theme_override_styles/focus = SubResource("XHover")
+text = "X"
+
+[node name="HeaderRule" type="HBoxContainer" parent="InstructionsPanel/VBox" unique_id=609079482]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RuleLeft" type="ColorRect" parent="InstructionsPanel/VBox/HeaderRule" unique_id=161488598]
+custom_minimum_size = Vector2(1, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(0.17, 0.24, 0.31, 1)
+
+[node name="RuleRed" type="ColorRect" parent="InstructionsPanel/VBox/HeaderRule" unique_id=996622446]
+custom_minimum_size = Vector2(90, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="RuleCyan" type="ColorRect" parent="InstructionsPanel/VBox/HeaderRule" unique_id=1885428865]
+custom_minimum_size = Vector2(60, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.32, 0.78, 0.91, 1)
+
+[node name="HeaderGlow" type="ColorRect" parent="InstructionsPanel/VBox" unique_id=451647057]
+custom_minimum_size = Vector2(1, 5)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 0.1)
+
+[node name="BodyColumns" type="HBoxContainer" parent="InstructionsPanel/VBox" unique_id=2044283779]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="LeftCol" type="VBoxContainer" parent="InstructionsPanel/VBox/BodyColumns" unique_id=629689040]
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ControlsTitleRow" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol" unique_id=296283692]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RedBar" type="ColorRect" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/ControlsTitleRow" unique_id=1917538989]
+custom_minimum_size = Vector2(4, 24)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="ControlsTitle" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/ControlsTitleRow" unique_id=1441512384]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.89, 0.91, 0.94, 1)
+theme_override_fonts/font = SubResource("VarTitle")
+theme_override_font_sizes/font_size = 22
+text = "CONTROLES"
+
+[node name="MoveRow" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol" unique_id=1298583766]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MoveKeys" type="VBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow" unique_id=1315380002]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="WasdRow" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys" unique_id=643510285]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="KeyW" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/WasdRow" unique_id=831922992]
+custom_minimum_size = Vector2(38, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeyWLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/WasdRow/KeyW" unique_id=748826734]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyA" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/WasdRow" unique_id=504629422]
+custom_minimum_size = Vector2(38, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeyALabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/WasdRow/KeyA" unique_id=609781584]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyS" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/WasdRow" unique_id=478817774]
+custom_minimum_size = Vector2(38, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeySLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/WasdRow/KeyS" unique_id=711344676]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyD" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/WasdRow" unique_id=69312099]
+custom_minimum_size = Vector2(38, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeyDLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/WasdRow/KeyD" unique_id=898354651]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArrowRow" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys" unique_id=2029963920]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="KeyUp" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/ArrowRow" unique_id=99406432]
+custom_minimum_size = Vector2(38, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeyUpLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/ArrowRow/KeyUp" unique_id=304661104]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "↑"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyDown" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/ArrowRow" unique_id=1914753069]
+custom_minimum_size = Vector2(38, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeyDownLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/ArrowRow/KeyDown" unique_id=558033586]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "↓"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyLeft" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/ArrowRow" unique_id=743917152]
+custom_minimum_size = Vector2(38, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeyLeftLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/ArrowRow/KeyLeft" unique_id=1705681447]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "←"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyRight" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/ArrowRow" unique_id=1560206356]
+custom_minimum_size = Vector2(38, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeyRightLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow/MoveKeys/ArrowRow/KeyRight" unique_id=2034047774]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "→"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveAction" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/MoveRow" unique_id=1344091309]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "MOVIMIENTO"
+horizontal_alignment = 2
+
+[node name="InteractRow" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol" unique_id=1333527002]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="KeyE" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/InteractRow" unique_id=600691720]
+custom_minimum_size = Vector2(52, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeyELabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/InteractRow/KeyE" unique_id=1525446299]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractAction" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/InteractRow" unique_id=481702738]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "INTERACTUAR"
+horizontal_alignment = 2
+
+[node name="PulseRow" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol" unique_id=1345869971]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="KeySpace" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/PulseRow" unique_id=1376239859]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapCyan")
+
+[node name="KeySpaceLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/PulseRow/KeySpace" unique_id=1101742623]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "SPACE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PulseAction" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/PulseRow" unique_id=886132931]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "PULSE DEVICE"
+horizontal_alignment = 2
+
+[node name="SprintRow" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol" unique_id=376411466]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="KeyShift" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/SprintRow" unique_id=1482454160]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapCyan")
+
+[node name="KeyShiftLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/SprintRow/KeyShift" unique_id=268437483]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "SHIFT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SprintAction" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/SprintRow" unique_id=1761434825]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "DASH"
+horizontal_alignment = 2
+
+[node name="PauseRow" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol" unique_id=1934376894]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="KeyEsc" type="PanelContainer" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/PauseRow" unique_id=1269171865]
+custom_minimum_size = Vector2(56, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="KeyEscLabel" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/PauseRow/KeyEsc" unique_id=770633933]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "ESC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseAction" type="Label" parent="InstructionsPanel/VBox/BodyColumns/LeftCol/PauseRow" unique_id=1088897988]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 16
+text = "PAUSA"
+horizontal_alignment = 2
+
+[node name="RightCol" type="VBoxContainer" parent="InstructionsPanel/VBox/BodyColumns" unique_id=1763247469]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ObjectiveBlock" type="VBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/RightCol" unique_id=1459539580]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ObjectiveHead" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/RightCol/ObjectiveBlock" unique_id=864849240]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ObjectiveIcon" type="TextureRect" parent="InstructionsPanel/VBox/BodyColumns/RightCol/ObjectiveBlock/ObjectiveHead" unique_id=2104688287]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("17_reticle")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ObjectiveTitle" type="Label" parent="InstructionsPanel/VBox/BodyColumns/RightCol/ObjectiveBlock/ObjectiveHead" unique_id=1624544941]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 16
+text = "OBJETIVO"
+
+[node name="ObjectiveRule" type="ColorRect" parent="InstructionsPanel/VBox/BodyColumns/RightCol/ObjectiveBlock" unique_id=1798346682]
+custom_minimum_size = Vector2(1, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="ObjectiveBody" type="Label" parent="InstructionsPanel/VBox/BodyColumns/RightCol/ObjectiveBlock" unique_id=946936954]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.7, 0.75, 1)
+theme_override_fonts/font = SubResource("SysReg")
+theme_override_font_sizes/font_size = 15
+text = "Restaura la energía, supera los sistemas de seguridad y alcanza la salida."
+autowrap_mode = 2
+
+[node name="InteractBlock" type="VBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/RightCol" unique_id=1594945198]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="InteractHead" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/RightCol/InteractBlock" unique_id=1161225552]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="InteractIcon" type="TextureRect" parent="InstructionsPanel/VBox/BodyColumns/RightCol/InteractBlock/InteractHead" unique_id=728877667]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("18_terminal")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InteractTitle" type="Label" parent="InstructionsPanel/VBox/BodyColumns/RightCol/InteractBlock/InteractHead" unique_id=413285528]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 16
+text = "INTERACCIÓN"
+
+[node name="InteractRule" type="ColorRect" parent="InstructionsPanel/VBox/BodyColumns/RightCol/InteractBlock" unique_id=416949063]
+custom_minimum_size = Vector2(1, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="InteractBody" type="Label" parent="InstructionsPanel/VBox/BodyColumns/RightCol/InteractBlock" unique_id=1059927213]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.7, 0.75, 1)
+theme_override_fonts/font = SubResource("SysReg")
+theme_override_font_sizes/font_size = 15
+text = "Interactúa con terminales, generadores, puertas y NPCs para modificar el entorno."
+autowrap_mode = 2
+
+[node name="PulseBlock" type="VBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/RightCol" unique_id=670307987]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PulseHead" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/RightCol/PulseBlock" unique_id=26670954]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PulseIcon" type="TextureRect" parent="InstructionsPanel/VBox/BodyColumns/RightCol/PulseBlock/PulseHead" unique_id=2029157183]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("19_pulse")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PulseTitle" type="Label" parent="InstructionsPanel/VBox/BodyColumns/RightCol/PulseBlock/PulseHead" unique_id=835580697]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 16
+text = "PULSE DEVICE"
+
+[node name="PulseRule" type="ColorRect" parent="InstructionsPanel/VBox/BodyColumns/RightCol/PulseBlock" unique_id=557990525]
+custom_minimum_size = Vector2(1, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="PulseBody" type="Label" parent="InstructionsPanel/VBox/BodyColumns/RightCol/PulseBlock" unique_id=1756440538]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.7, 0.75, 1)
+theme_override_fonts/font = SubResource("SysReg")
+theme_override_font_sizes/font_size = 15
+text = "El Pulse Device permite interferir temporalmente con drones y sistemas electrónicos. Úsalo estratégicamente."
+autowrap_mode = 2
+
+[node name="SecurityBlock" type="VBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/RightCol" unique_id=1464200562]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SecurityHead" type="HBoxContainer" parent="InstructionsPanel/VBox/BodyColumns/RightCol/SecurityBlock" unique_id=1293470428]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SecurityIcon" type="TextureRect" parent="InstructionsPanel/VBox/BodyColumns/RightCol/SecurityBlock/SecurityHead" unique_id=2066154087]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("20_drone")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SecurityTitle" type="Label" parent="InstructionsPanel/VBox/BodyColumns/RightCol/SecurityBlock/SecurityHead" unique_id=739224314]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 16
+text = "SEGURIDAD"
+
+[node name="SecurityRule" type="ColorRect" parent="InstructionsPanel/VBox/BodyColumns/RightCol/SecurityBlock" unique_id=1148883685]
+custom_minimum_size = Vector2(1, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="SecurityBody" type="Label" parent="InstructionsPanel/VBox/BodyColumns/RightCol/SecurityBlock" unique_id=1663942561]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.7, 0.75, 1)
+theme_override_fonts/font = SubResource("SysReg")
+theme_override_font_sizes/font_size = 15
+text = "Los drones patrullan la instalación y pueden detectarte por visión y por ruido. Evítalos o utiliza el entorno a tu favor."
+autowrap_mode = 2
+
+[node name="FaintLine" type="ColorRect" parent="InstructionsPanel/VBox" unique_id=712636147]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.06)
+
+[node name="BackButton" type="Button" parent="InstructionsPanel/VBox" unique_id=956234464]
+custom_minimum_size = Vector2(300, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("BtnTexRed")
+theme_override_styles/pressed = SubResource("BtnTexPressed")
+theme_override_styles/hover = SubResource("BtnTexGlow")
+theme_override_styles/focus = SubResource("BtnTexGlow")
+text = "VOLVER"
+
+[node name="SettingsPanel" type="PanelContainer" parent="." unique_id=1611112133]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -320.0
+offset_right = 460.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PanelFrame")
+
+[node name="VBox" type="VBoxContainer" parent="SettingsPanel" unique_id=90772652]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="HeaderBar" type="HBoxContainer" parent="SettingsPanel/VBox" unique_id=1355132943]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="GearIcon" type="TextureRect" parent="SettingsPanel/VBox/HeaderBar" unique_id=395880683]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("10_gearred")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SettingsTitle" type="Label" parent="SettingsPanel/VBox/HeaderBar" unique_id=54118325]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("VarTitle")
+theme_override_font_sizes/font_size = 30
+text = "CONFIGURACIÓN"
+
+[node name="HeaderSpacer" type="Control" parent="SettingsPanel/VBox/HeaderBar" unique_id=1570372896]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="SysTag" type="Label" parent="SettingsPanel/VBox/HeaderBar" unique_id=1085287506]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.39, 0.46, 0.53, 1)
+theme_override_fonts/font = SubResource("SysReg")
+theme_override_font_sizes/font_size = 11
+text = "// SYSTEM_CONFIGURATION"
+
+[node name="SettingsCloseButton" type="Button" parent="SettingsPanel/VBox/HeaderBar" unique_id=1761132055]
+custom_minimum_size = Vector2(46, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("XNormal")
+theme_override_styles/pressed = SubResource("BtnPressed")
+theme_override_styles/hover = SubResource("XHover")
+theme_override_styles/focus = SubResource("XHover")
+text = "X"
+
+[node name="HeaderRule" type="HBoxContainer" parent="SettingsPanel/VBox" unique_id=724457440]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RuleLeft" type="ColorRect" parent="SettingsPanel/VBox/HeaderRule" unique_id=943014453]
+custom_minimum_size = Vector2(1, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(0.17, 0.24, 0.31, 1)
+
+[node name="RuleRed" type="ColorRect" parent="SettingsPanel/VBox/HeaderRule" unique_id=644733463]
+custom_minimum_size = Vector2(90, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="RuleCyan" type="ColorRect" parent="SettingsPanel/VBox/HeaderRule" unique_id=340319645]
+custom_minimum_size = Vector2(60, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.32, 0.78, 0.91, 1)
+
+[node name="HeaderGlow" type="ColorRect" parent="SettingsPanel/VBox" unique_id=1364188934]
+custom_minimum_size = Vector2(1, 5)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 0.1)
+
+[node name="AudioSection" type="VBoxContainer" parent="SettingsPanel/VBox" unique_id=784329616]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="AudioTitleRow" type="HBoxContainer" parent="SettingsPanel/VBox/AudioSection" unique_id=122915276]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RedBar" type="ColorRect" parent="SettingsPanel/VBox/AudioSection/AudioTitleRow" unique_id=2104432833]
+custom_minimum_size = Vector2(4, 24)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="AudioTitle" type="Label" parent="SettingsPanel/VBox/AudioSection/AudioTitleRow" unique_id=101494503]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.89, 0.91, 0.94, 1)
+theme_override_fonts/font = SubResource("VarTitle")
+theme_override_font_sizes/font_size = 22
+text = "AUDIO"
+
+[node name="MasterRow" type="HBoxContainer" parent="SettingsPanel/VBox/AudioSection" unique_id=1909830390]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MasterIcon" type="TextureRect" parent="SettingsPanel/VBox/AudioSection/MasterRow" unique_id=356141584]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("22_volume")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MasterLabel" type="Label" parent="SettingsPanel/VBox/AudioSection/MasterRow" unique_id=87885604]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 20
+text = "GENERAL"
+
+[node name="MasterSlider" type="Control" parent="SettingsPanel/VBox/AudioSection/MasterRow" unique_id=459465754]
+custom_minimum_size = Vector2(280, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("21_tech")
+
+[node name="MasterPct" type="PanelContainer" parent="SettingsPanel/VBox/AudioSection/MasterRow" unique_id=89713078]
+custom_minimum_size = Vector2(76, 36)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="MasterPctLabel" type="Label" parent="SettingsPanel/VBox/AudioSection/MasterRow/MasterPct" unique_id=598556810]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 20
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicRow" type="HBoxContainer" parent="SettingsPanel/VBox/AudioSection" unique_id=1746471928]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MusicIcon" type="TextureRect" parent="SettingsPanel/VBox/AudioSection/MusicRow" unique_id=1731348587]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("23_music")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MusicLabel" type="Label" parent="SettingsPanel/VBox/AudioSection/MusicRow" unique_id=1186216991]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 20
+text = "MÚSICA"
+
+[node name="MusicSlider" type="Control" parent="SettingsPanel/VBox/AudioSection/MusicRow" unique_id=573146100]
+custom_minimum_size = Vector2(280, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("21_tech")
+
+[node name="MusicPct" type="PanelContainer" parent="SettingsPanel/VBox/AudioSection/MusicRow" unique_id=372169518]
+custom_minimum_size = Vector2(76, 36)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="MusicPctLabel" type="Label" parent="SettingsPanel/VBox/AudioSection/MusicRow/MusicPct" unique_id=635829147]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 20
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SfxRow" type="HBoxContainer" parent="SettingsPanel/VBox/AudioSection" unique_id=1459522406]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SfxIcon" type="TextureRect" parent="SettingsPanel/VBox/AudioSection/SfxRow" unique_id=1210316059]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("24_waves")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SfxLabel" type="Label" parent="SettingsPanel/VBox/AudioSection/SfxRow" unique_id=743153302]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 20
+text = "EFECTOS"
+
+[node name="SfxSlider" type="Control" parent="SettingsPanel/VBox/AudioSection/SfxRow" unique_id=552054917]
+custom_minimum_size = Vector2(280, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("21_tech")
+
+[node name="SfxPct" type="PanelContainer" parent="SettingsPanel/VBox/AudioSection/SfxRow" unique_id=1023686656]
+custom_minimum_size = Vector2(76, 36)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("KeyCapGray")
+
+[node name="SfxPctLabel" type="Label" parent="SettingsPanel/VBox/AudioSection/SfxRow/SfxPct" unique_id=864945582]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 20
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScreenSection" type="VBoxContainer" parent="SettingsPanel/VBox" unique_id=1376212083]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ScreenTitleRow" type="HBoxContainer" parent="SettingsPanel/VBox/ScreenSection" unique_id=927817958]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RedBar" type="ColorRect" parent="SettingsPanel/VBox/ScreenSection/ScreenTitleRow" unique_id=411741806]
+custom_minimum_size = Vector2(4, 24)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0.9, 0.11, 0.14, 1)
+
+[node name="ScreenTitle" type="Label" parent="SettingsPanel/VBox/ScreenSection/ScreenTitleRow" unique_id=1266392688]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.89, 0.91, 0.94, 1)
+theme_override_fonts/font = SubResource("VarTitle")
+theme_override_font_sizes/font_size = 22
+text = "PANTALLA"
+
+[node name="WindowRow" type="HBoxContainer" parent="SettingsPanel/VBox/ScreenSection" unique_id=585955763]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="WindowIcon" type="TextureRect" parent="SettingsPanel/VBox/ScreenSection/WindowRow" unique_id=1478451501]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("25_window")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WindowLabel" type="Label" parent="SettingsPanel/VBox/ScreenSection/WindowRow" unique_id=45646781]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 20
+text = "MODO DE VENTANA"
+
+[node name="WindowSelector" type="Button" parent="SettingsPanel/VBox/ScreenSection/WindowRow" unique_id=1156127201]
+custom_minimum_size = Vector2(280, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.85, 0.88, 0.91, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("BtnNormal")
+theme_override_styles/pressed = SubResource("BtnPressed")
+theme_override_styles/hover = SubResource("BtnHover")
+theme_override_styles/focus = SubResource("BtnFocus")
+text = "‹ VENTANA ›"
+
+[node name="ResRow" type="HBoxContainer" parent="SettingsPanel/VBox/ScreenSection" unique_id=258705244]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ResIcon" type="TextureRect" parent="SettingsPanel/VBox/ScreenSection/ResRow" unique_id=491650369]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("26_res")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ResLabel" type="Label" parent="SettingsPanel/VBox/ScreenSection/ResRow" unique_id=1306427758]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 20
+text = "RESOLUCIÓN"
+
+[node name="ResSelector" type="Button" parent="SettingsPanel/VBox/ScreenSection/ResRow" unique_id=1321061634]
+custom_minimum_size = Vector2(280, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.85, 0.88, 0.91, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("BtnNormal")
+theme_override_styles/pressed = SubResource("BtnPressed")
+theme_override_styles/hover = SubResource("BtnHover")
+theme_override_styles/focus = SubResource("BtnFocus")
+text = "‹ 1280 × 720 ›"
+
+[node name="FpsRow" type="HBoxContainer" parent="SettingsPanel/VBox/ScreenSection" unique_id=1165011050]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FpsSpacer" type="Control" parent="SettingsPanel/VBox/ScreenSection/FpsRow" unique_id=1272273033]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="FpsLabel" type="Label" parent="SettingsPanel/VBox/ScreenSection/FpsRow" unique_id=156354612]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.95, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 20
+text = "MOSTRAR FPS"
+
+[node name="FpsSelector" type="Button" parent="SettingsPanel/VBox/ScreenSection/FpsRow" unique_id=1375947572]
+custom_minimum_size = Vector2(280, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.85, 0.88, 0.91, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("VarButton")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("BtnNormal")
+theme_override_styles/pressed = SubResource("BtnPressed")
+theme_override_styles/hover = SubResource("BtnHover")
+theme_override_styles/focus = SubResource("BtnFocus")
+text = "‹ OFF ›"
+
+[node name="ApplyButton" type="Button" parent="SettingsPanel/VBox" unique_id=2081777055]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.5, 0.55, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("BtnTexRed")
+theme_override_styles/pressed = SubResource("BtnTexPressed")
+theme_override_styles/hover = SubResource("BtnTexGlow")
+theme_override_styles/disabled = SubResource("BtnTexGray")
+theme_override_styles/focus = SubResource("BtnTexGlow")
+disabled = true
+text = "YA APLICADO"
+
+[node name="ApplyErrorLabel" type="Label" parent="SettingsPanel/VBox" unique_id=621580302]
+visible = false
+custom_minimum_size = Vector2(1, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.55, 1)
+theme_override_fonts/font = SubResource("SysReg")
+theme_override_font_sizes/font_size = 12
+text = "NO SE PUDO APLICAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="FaintLine" type="ColorRect" parent="SettingsPanel/VBox" unique_id=1726451566]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.06)
+
+[node name="SettingsBackButton" type="Button" parent="SettingsPanel/VBox" unique_id=1562731720]
+custom_minimum_size = Vector2(300, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SysBold")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("BtnTexRed")
+theme_override_styles/pressed = SubResource("BtnTexPressed")
+theme_override_styles/hover = SubResource("BtnTexGlow")
+theme_override_styles/focus = SubResource("BtnTexGlow")
+text = "VOLVER"

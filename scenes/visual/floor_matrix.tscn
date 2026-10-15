@@ -1,0 +1,154 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/visual/floor/plate_standard.png" id="1_std"]
+[ext_resource type="Texture2D" path="res://assets/visual/floor/plate_worn.png" id="2_worn"]
+[ext_resource type="Texture2D" path="res://assets/visual/floor/grille.png" id="3_grille"]
+[ext_resource type="Texture2D" path="res://assets/visual/floor/panel_maintenance.png" id="4_maint"]
+[ext_resource type="Texture2D" path="res://assets/visual/floor/joint_metal.png" id="5_joint"]
+[ext_resource type="Texture2D" path="res://assets/visual/floor/hazard_marks.png" id="6_hazard"]
+
+[node name="FloorMatrix" type="Node2D"]
+
+[node name="S0" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_std")
+
+[node name="S1" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(64, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_std")
+
+[node name="S2" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(128, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_std")
+
+[node name="S3" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(192, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_std")
+
+[node name="W0" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_worn")
+
+[node name="W1" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(64, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_worn")
+
+[node name="W2" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(128, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_worn")
+
+[node name="W3" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(192, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_worn")
+
+[node name="G0" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 128)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_grille")
+
+[node name="G1" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(64, 128)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_grille")
+
+[node name="M0" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(128, 128)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_maint")
+
+[node name="M1" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(192, 128)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_maint")
+
+[node name="J0" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_joint")
+
+[node name="J1" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(64, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_joint")
+
+[node name="J2" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(128, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_joint")
+
+[node name="J3" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(192, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_joint")
+
+[node name="J4" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(256, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_joint")
+
+[node name="J5" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(320, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_joint")
+
+[node name="J6" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(384, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_joint")
+
+[node name="J7" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(448, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_joint")
+
+[node name="S4" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 208)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_std")
+
+[node name="S5" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(64, 208)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_std")
+
+[node name="H0" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 208)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_hazard")
+
+[node name="H1" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(64, 208)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_hazard")

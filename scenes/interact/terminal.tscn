@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/interact/terminal.gd" id="1_terminal"]
+[ext_resource type="Texture2D" path="res://assets/visual/props/terminal_console.png" id="2_body"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_range"]
+radius = 48.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_block"]
+size = Vector2(32, 40)
+
+[node name="Terminal" type="Area2D"]
+script = ExtResource("1_terminal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_range")
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker"]
+shape = SubResource("RectangleShape2D_block")
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.25, 0.5, 0.9, 1)
+polygon = PackedVector2Array(-18, -22, 18, -22, 18, 22, -18, 22)
+
+[node name="BodyArt" type="Sprite2D" parent="Visual"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_body")
+
+[node name="Screen" type="Polygon2D" parent="."]
+position = Vector2(0, -10.5)
+color = Color(0.7, 0.95, 1, 1)
+polygon = PackedVector2Array(-10.5, -6.25, 10.5, -6.25, 10.5, 6.25, -10.5, 6.25)

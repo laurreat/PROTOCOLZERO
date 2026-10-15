@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/interact/interaction_detector.gd" id="2_detector"]
+[ext_resource type="Script" path="res://scripts/player/pulse_device.gd" id="3_pulse"]
+[ext_resource type="Texture2D" path="res://assets/visual/props/hero_explorer.png" id="4_suit"]
+[ext_resource type="Texture2D" path="res://assets/visual/characters/player/hero_idle_south.png" id="5_hero"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detector"]
+radius = 64.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_body")
+
+[node name="Body" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.2, 0.75, 0.85, 1)
+polygon = PackedVector2Array(14, 0, 10, 10, 0, 14, -10, 10, -14, 0, -10, -10, 0, -14, 10, -10)
+
+[node name="Core" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.88, 1, 1, 1)
+polygon = PackedVector2Array(6, 0, 0, 6, -6, 0, 0, -6)
+
+[node name="Heading" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 1, 1, 1)
+polygon = PackedVector2Array(0, -14, -5, -5, 5, -5)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="InteractionDetector" type="Area2D" parent="."]
+script = ExtResource("2_detector")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionDetector"]
+shape = SubResource("CircleShape2D_detector")
+
+[node name="PulseDevice" type="Node2D" parent="."]
+script = ExtResource("3_pulse")
+
+[node name="SuitArt" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_suit")
+
+[node name="Hero" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_hero")
