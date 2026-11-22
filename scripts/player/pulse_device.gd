@@ -10,6 +10,10 @@ extends Node2D
 ## Visual: spawns an expanding ring (pulse_ring.tscn) at the player position.
 
 signal pulse_used
+## CAM-04 (Tarea 3): read-only outcome events for HUD feedback. The mechanic
+## itself (radius, cooldown, stun time, noise) is untouched.
+signal pulse_result(stunned: int, radius: float)
+signal pulse_ended(stunned: int)
 
 @export var pulse_radius := 220.0
 @export var pulse_cooldown := 6.0
@@ -48,12 +52,14 @@ func try_pulse() -> bool:
 			Sfx.play(get_tree(), Sfx.ui_deny())
 		return false
 	_cooldown = pulse_cooldown
-	_stun_nearby()
+	var stunned := _stun_nearby()
 	_emit_loud_noise()
 	_spawn_ring()
 	pulse_used.emit()
+	pulse_result.emit(stunned, pulse_radius)
+	_schedule_pulse_end(stunned)
 	Sfx.play(get_tree(), Sfx.pulse_sweep())
-	print("PulseDevice: pulse fired.")
+	print("PulseDevice: pulse fired (%d drone(s) stunned)." % stunned)
 	return true
 
 
@@ -61,10 +67,12 @@ func get_cooldown_remaining() -> float:
 	return _cooldown
 
 
-func _stun_nearby() -> void:
+## Returns how many drones the pulse actually interrupted (HUD feedback).
+func _stun_nearby() -> int:
+	var total := 0
 	var tree := get_tree()
 	if tree == null:
-		return
+		return total
 	var seen: Dictionary = {}
 	for group in ["security_drone", "enemies"]:
 		for node in tree.get_nodes_in_group(group):
@@ -78,9 +86,24 @@ func _stun_nearby() -> void:
 				continue
 			if body.global_position.distance_to(global_position) <= pulse_radius:
 				node.stun(stun_time)
+				total += 1
 	# FASE 5 hook (no cameras in MVP): stun above only interrupts drones via
 	# drone.stun(). When security cameras exist, disable the ones in group
 	# "security_camera" inside pulse_radius here for stun_time.
+	return total
+
+
+## End-of-stun notice (CAM-04: activation and duration read differently in
+## the HUD). WeakRef + lambda so a scene change mid-timer is a no-op.
+func _schedule_pulse_end(count: int) -> void:
+	if count <= 0 or not is_inside_tree():
+		return
+	var ref: WeakRef = weakref(self)
+	var timer: SceneTreeTimer = get_tree().create_timer(stun_time, false)
+	timer.timeout.connect(func() -> void:
+		var device: Object = ref.get_ref()
+		if device != null and device.is_inside_tree():
+			device.emit_signal("pulse_ended", count))
 
 
 func _emit_loud_noise() -> void:

@@ -142,11 +142,11 @@ func interact(_player: Node2D) -> void:
 	match state:
 		State.DONE:
 			print("Technician: gate is open, move out.")
-			Sfx.message(get_tree(), "Maintenance gate operational. Good luck.")
+			Sfx.feedback(get_tree(), "TECHNICIAN — maintenance gate already operational", "info")
 			return
 		State.TO_SITE, State.REPAIRING:
 			print("Technician: repair in progress, hold on.")
-			Sfx.message(get_tree(), "Repair in progress, hold on.")
+			Sfx.feedback(get_tree(), "TECHNICIAN — repair in progress (%.0fs)" % maxf(_repair_left, 0.0), "info")
 			return
 		State.IDLE:
 			if get_target() == null:
@@ -155,7 +155,7 @@ func interact(_player: Node2D) -> void:
 			if not is_energy_on():
 				print("Technician: restore power first.")
 				Sfx.play(get_tree(), Sfx.ui_deny())
-				Sfx.message(get_tree(), "Restore power first.")
+				Sfx.feedback(get_tree(), "TECHNICIAN — restore power first", "fail")
 				_face_to_player(_player)
 				_tset("react")
 				return
@@ -163,7 +163,7 @@ func interact(_player: Node2D) -> void:
 			_face_to_player(_player)
 			print("Technician: on my way to the maintenance gate.")
 			Sfx.play(get_tree(), Sfx.ui_ok())
-			Sfx.message(get_tree(), "Technician on the way.")
+			Sfx.feedback(get_tree(), "TECHNICIAN — moving to the maintenance gate", "info")
 			state_changed.emit(state)
 			_refresh_visual()
 			_refresh_status()
@@ -229,7 +229,7 @@ func _finish_repair() -> void:
 		_visual.modulate.a = 1.0
 	print("Technician: maintenance gate repaired.")
 	Sfx.play(get_tree(), Sfx.ui_ok())
-	Sfx.message(get_tree(), "Maintenance gate repaired.")
+	Sfx.feedback(get_tree(), "MAINTENANCE GATE REPAIRED — access restored", "ok")
 	state_changed.emit(state)
 	_refresh_visual()
 	_refresh_status()
@@ -290,4 +290,4 @@ func _maybe_warn_quiet() -> void:
 		return
 	if global_position.distance_to(drone.global_position) < 300.0:
 		print("Technician: keep quiet.")
-		Sfx.message(get_tree(), "Keep quiet.")
+		Sfx.feedback(get_tree(), "TECHNICIAN — a drone is close, keep quiet", "warn")

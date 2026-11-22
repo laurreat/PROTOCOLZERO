@@ -48,7 +48,7 @@ func interact(_player: Node2D) -> void:
 	if _energy == null or not _energy.is_on():
 		print("ZeroSystem: no power.")
 		Sfx.play(get_tree(), Sfx.ui_deny())
-		Sfx.message(get_tree(), "No power. Restore energy first.")
+		Sfx.feedback(get_tree(), "ZERO OFFLINE — restore power first", "fail")
 		return
 	_running = true
 	_run_sequence()
@@ -72,6 +72,7 @@ func _run_sequence() -> void:
 			Sfx.play(get_tree(), Sfx.terminal_boot())
 		elif i == SEQUENCE.size() - 1:
 			Sfx.play(get_tree(), Sfx.terminal_ok())
+			Sfx.feedback(get_tree(), "PROTOCOL ZERO ACTIVATED — extraction unlocked", "ok")
 		else:
 			Sfx.play(get_tree(), Sfx.terminal_scan())
 		if i < SEQUENCE.size() - 1:

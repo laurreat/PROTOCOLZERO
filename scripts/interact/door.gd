@@ -15,6 +15,8 @@ signal state_changed(state: State)
 ## Damaged gate (FASE 5): while true, neither energy nor the terminal can open
 ## the door; only the Technician clears it via set_repaired().
 @export var repair_required := false
+## CAM-03 (Tarea 3): readable name used by the access feedback messages.
+@export var display_name := ""
 
 var state: State = State.CLOSED
 var terminal_unlocked := false
@@ -44,6 +46,13 @@ func _ready() -> void:
 	elif requires_energy:
 		push_error("Door: requires_energy but no EnergySystem in group 'energy_system'.")
 	evaluate()
+
+
+## Short human label for feedback ("D2", "GEN"...).
+func label() -> String:
+	if display_name != "":
+		return display_name
+	return String(name).replace("Door", "")
 
 
 func requirements_met() -> bool:
@@ -94,7 +103,7 @@ func evaluate() -> void:
 
 func get_prompt() -> String:
 	if repair_required:
-		return "Damaged - technician needed"
+		return "Inspect damage [E]"
 	match state:
 		State.LOCKED:
 			return "Locked (needs %s)" % missing_requirements()
@@ -110,7 +119,7 @@ func interact(_player: Node2D) -> void:
 	if repair_required:
 		print("Door: damaged - technician needed.")
 		Sfx.play(get_tree(), Sfx.door_damaged())
-		Sfx.message(get_tree(), "Damaged - technician needed.")
+		Sfx.feedback(get_tree(), "DAMAGED — %s needs a technician" % label(), "fail")
 		return
 	match state:
 		State.OPENING:
@@ -130,7 +139,7 @@ func interact(_player: Node2D) -> void:
 func _deny() -> void:
 	print("Door: locked (needs %s)." % missing_requirements())
 	Sfx.play(get_tree(), Sfx.door_locked())
-	Sfx.message(get_tree(), "Locked (needs %s)." % missing_requirements())
+	Sfx.feedback(get_tree(), "ACCESS DENIED — %s needs %s" % [label(), missing_requirements()], "fail")
 
 
 ## FASE 5: clears the damage flag (Technician only) and re-evaluates, so the
@@ -151,7 +160,7 @@ func open() -> void:
 	state_changed.emit(state)
 	_collision.set_deferred("disabled", true)
 	Sfx.play(get_tree(), Sfx.door_open())
-	Sfx.message(get_tree(), "Door open.")
+	Sfx.feedback(get_tree(), "ACCESS GRANTED — %s open" % label(), "ok")
 	_kill_tween()
 	_tween = create_tween()
 	_tween.tween_property(_visual, "position", _visual_home + OPEN_OFFSET, OPEN_TIME)
@@ -165,6 +174,7 @@ func close() -> void:
 	state = State.CLOSED
 	_collision.set_deferred("disabled", false)
 	Sfx.play(get_tree(), Sfx.door_close())
+	Sfx.feedback(get_tree(), "%s closed" % label(), "info")
 	_tween = create_tween()
 	_tween.tween_property(_visual, "position", _visual_home, CLOSE_TIME)
 	_refresh_visual()
@@ -197,6 +207,8 @@ func _play_unlock_nearby() -> void:
 		return
 	if p.global_position.distance_to(global_position) <= 600.0:
 		Sfx.play(tree, Sfx.door_unlock())
+		# CAM-03: a visible, named confirmation that the access powered up.
+		Sfx.feedback(tree, "ACCESS GRANTED — %s online" % label(), "ok")
 
 
 func _find_energy() -> EnergySystem:

@@ -65,12 +65,12 @@ func interact(_player: Node2D) -> void:
 	if _energy == null or not _energy.is_on():
 		print("Terminal: no power. Restore energy first.")
 		Sfx.play(get_tree(), Sfx.terminal_deny())
-		Sfx.message(get_tree(), "No power. Restore energy first.")
+		Sfx.feedback(get_tree(), "ACCESS DENIED — terminal offline (restore power)", "fail")
 		_flash_denied()
 		return
 	if door.terminal_unlocked:
 		print("Terminal: door already unlocked.")
-		Sfx.message(get_tree(), _readout())
+		Sfx.feedback(get_tree(), "TERMINAL — access already granted", "info")
 		return
 	door.terminal_unlocked = true
 	door.evaluate()
@@ -79,8 +79,9 @@ func interact(_player: Node2D) -> void:
 		_visual.color = COLOR_GRANTED
 	_set_screen(SCREEN_GRANTED)
 	print("Terminal: door unlocked.")
+	print("Terminal: %s" % _readout().replace("\n", " | "))
 	Sfx.play(get_tree(), Sfx.terminal_ok())
-	Sfx.message(get_tree(), _readout())
+	Sfx.feedback(get_tree(), "ACCESS GRANTED — %s unlocked" % door.label(), "ok")
 	_emit_noise()
 	interacted.emit()
 

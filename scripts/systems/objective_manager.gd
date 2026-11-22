@@ -48,6 +48,15 @@ func get_current_objective() -> String:
 	return OBJECTIVES[current_index]
 
 
+## CAM-07 (Tarea 3): read-only progress for the HUD (1-based display).
+func get_current_index() -> int:
+	return current_index
+
+
+func get_total() -> int:
+	return OBJECTIVES.size()
+
+
 ## Terminal use is a one-way latch owned by the Terminal itself; the manager
 ## only reads it (single-writer rule preserved).
 func _is_terminal_done() -> bool:

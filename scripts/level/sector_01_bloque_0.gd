@@ -8,11 +8,24 @@ const ALARM_COOLDOWN := 5.0
 const DETECT_COOLDOWN := 3.0
 const AMBIENT_OFF := Color(0.30, 0.30, 0.38)
 const AMBIENT_ON := Color(0.78, 0.78, 0.84)
+## CAM-05 (Tarea 3): one-line security readout, sampled a few times per second
+## (never per drone per frame).
+const THREAT_INTERVAL := 0.15
+const COLOR_THREAT_OFFLINE := Color(0.45, 0.5, 0.58)
+const COLOR_THREAT_CALM := Color(0.45, 0.7, 0.85)
+const COLOR_THREAT_SUSPECT := Color(1.0, 0.85, 0.2)
+const COLOR_THREAT_SEARCH := Color(1.0, 0.55, 0.15)
+const COLOR_THREAT_ALERT := Color(1.0, 0.3, 0.25)
+const COLOR_THREAT_STUNNED := Color(0.55, 0.75, 1.0)
 
 var _game_over_done := false
 var _run_time := 0.0
 var _alarm_left := 0.0
 var _detect_left := 0.0
+## CAM-01: the single interactable currently highlighted (null when none).
+var _focused: Interactable = null
+var _threat_tick := 0.0
+var _hud: Node = null
 ## Parpadeo de emergencia en apagón (un solo tween en bucle, muerto en cada
 ## cambio de energia para no acumular animaciones).
 var _emergency_tween: Tween = null
@@ -28,6 +41,7 @@ func _ready() -> void:
 	_wire_security_online()
 	_wire_zero()
 	_wire_terminals()
+	_wire_pulse()
 	_apply_lighting(false)
 	var bed: Node = get_node_or_null("/root/Audio")
 	if bed != null:
@@ -41,14 +55,106 @@ func _process(_delta: float) -> void:
 		_alarm_left = maxf(0.0, _alarm_left - _delta)
 	if _detect_left > 0.0:
 		_detect_left = maxf(0.0, _detect_left - _delta)
+	_threat_tick += _delta
+	if _threat_tick >= THREAT_INTERVAL:
+		_threat_tick = 0.0
+		_refresh_threat()
 	if _player == null or _prompt_label == null:
 		return
 	var best: Interactable = _player.get_best_interactable()
+	_set_focus(best)
 	if best == null:
 		_prompt_label.visible = false
 		return
 	_prompt_label.visible = true
 	_prompt_label.text = best.get_prompt()
+
+
+## CAM-01: only the interaction the player would actually trigger is lit, so
+## the highlight never becomes wallpaper.
+func _set_focus(best: Interactable) -> void:
+	if best == _focused:
+		return
+	if _focused != null and is_instance_valid(_focused):
+		_focused.set_focused(false)
+	_focused = best
+	if _focused != null:
+		_focused.set_focused(true)
+
+
+func _hud_node() -> Node:
+	if _hud != null and is_instance_valid(_hud):
+		return _hud
+	_hud = get_tree().get_first_node_in_group("hud")
+	return _hud
+
+
+## CAM-05: aggregate drone states into one discrete HUD line. Priority:
+## CHASE > DETECT > SEARCH/INVESTIGATE > STUNNED > patrol; all dormant = OFFLINE.
+func _refresh_threat() -> void:
+	var hud := _hud_node()
+	if hud == null or not hud.has_method("set_threat"):
+		return
+	var drones: Array[Node] = get_tree().get_nodes_in_group("security_drone")
+	if drones.is_empty():
+		hud.call("set_threat", "", COLOR_THREAT_CALM)
+		return
+	var online := 0
+	var chasing := 0
+	var detecting := 0
+	var searching := 0
+	var stunned := 0
+	for drone in drones:
+		if drone == null or not is_instance_valid(drone):
+			continue
+		if bool(drone.get("dormant")):
+			continue
+		online += 1
+		if float(drone.get("stunned_timer")) > 0.0:
+			stunned += 1
+			continue
+		match int(drone.get("state")):
+			SecurityDrone.State.CHASE:
+				chasing += 1
+			SecurityDrone.State.DETECT:
+				detecting += 1
+			SecurityDrone.State.INVESTIGATE, SecurityDrone.State.SEARCH:
+				searching += 1
+	if online == 0:
+		hud.call("set_threat", "SECURITY: OFFLINE", COLOR_THREAT_OFFLINE)
+	elif chasing > 0:
+		hud.call("set_threat", "SECURITY: ALERT", COLOR_THREAT_ALERT)
+	elif detecting > 0:
+		hud.call("set_threat", "SECURITY: SUSPICION", COLOR_THREAT_SUSPECT)
+	elif searching > 0:
+		hud.call("set_threat", "SECURITY: SEARCHING", COLOR_THREAT_SEARCH)
+	elif stunned > 0:
+		hud.call("set_threat", "SECURITY: STUNNED", COLOR_THREAT_STUNNED)
+	else:
+		hud.call("set_threat", "SECURITY: PATROL", COLOR_THREAT_CALM)
+
+
+## CAM-04: pulse outcome messages (mechanic untouched; only what the player
+## is told about it).
+func _wire_pulse() -> void:
+	for node in get_tree().get_nodes_in_group("pulse_device"):
+		if node == null or not is_instance_valid(node):
+			continue
+		if node.has_signal("pulse_result"):
+			node.connect("pulse_result", _on_pulse_result)
+		if node.has_signal("pulse_ended"):
+			node.connect("pulse_ended", _on_pulse_ended)
+
+
+func _on_pulse_result(stunned: int, radius: float) -> void:
+	if stunned > 0:
+		Sfx.feedback(get_tree(), "PULSE — %d drone%s stunned (%d px)" % [stunned, "" if stunned == 1 else "s", int(radius)], "ok")
+	else:
+		Sfx.feedback(get_tree(), "PULSE — no security drone in range", "warn")
+
+
+func _on_pulse_ended(stunned: int) -> void:
+	Sfx.feedback(get_tree(), "PULSE OVER — %d drone%s back online" % [stunned, "" if stunned == 1 else "s"], "info")
 
 
 ## Catch hook: single guarded transition with lose sting + overlay + pause.
@@ -267,7 +373,7 @@ func _on_drone_state_changed(new_state: SecurityDrone.State) -> void:
 		return
 	_alarm_left = ALARM_COOLDOWN
 	Sfx.play(get_tree(), Sfx.alarm())
-	Sfx.message(get_tree(), "Detected!")
+	Sfx.feedback(get_tree(), "DETECTED — security drone chasing", "fail")
 
 
 func _route_music(new_state: SecurityDrone.State) -> void:

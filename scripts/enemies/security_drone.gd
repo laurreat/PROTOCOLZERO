@@ -178,6 +178,7 @@ func _ready() -> void:
 	add_to_group("enemies")
 	add_to_group("security_drone") # FASE 4: spec-literal group for NoiseSystem.
 	_load_dframes()
+	_style_state_label()
 	_dset("dormant")
 	_resolve_waypoints()
 	_wp_index = _nearest_waypoint()
@@ -300,12 +301,34 @@ func stun(duration: float) -> void:
 	_apply_stun_visual()
 
 
+## CAM-05 (Tarea 3): the floating label now spells the state out in words.
+## Small size + black outline keep it readable without covering the level.
+func _style_state_label() -> void:
+	if _label == null:
+		return
+	_label.add_theme_font_size_override("font_size", 12)
+	_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
+	_label.add_theme_constant_override("outline_size", 4)
+	_label.offset_left = -78.0
+	_label.offset_right = 78.0
+	_label.offset_top = -58.0
+	_label.offset_bottom = -36.0
+
+
+func _state_label(text: String, color: Color, alpha := 1.0) -> void:
+	if _label == null:
+		return
+	_label.text = text
+	_label.add_theme_color_override("font_color", color)
+	_label.modulate.a = alpha
+
+
 func _apply_stun_visual() -> void:
 	if not is_node_ready():
 		return
 	_body.color = COLOR_STUNNED
 	_cone.color = Color(COLOR_STUNNED, CONE_ALPHA)
-	_label.text = "Zz"
+	_state_label("STUNNED", COLOR_STUNNED)
 	_dset("stunned")
 	_dping("stun_spark.png", 0.45, 0.4)
 
@@ -633,7 +656,7 @@ func _refresh_visual() -> void:
 	if dormant:
 		_body.color = Color(0.12, 0.13, 0.16)
 		_cone.visible = false
-		_label.text = "OFF"
+		_state_label("OFF", Color(0.5, 0.53, 0.6))
 		_dset("dormant")
 		return
 	if _cone != null:
@@ -642,25 +665,25 @@ func _refresh_visual() -> void:
 		State.PATROL:
 			_body.color = COLOR_PATROL
 			_cone.color = Color(COLOR_PATROL, CONE_ALPHA)
-			_label.text = ""
+			_state_label("PATROL", COLOR_PATROL, 0.5)
 			_dset("patrol_" + _ddir8(_facing))
 		State.DETECT:
 			_body.color = COLOR_DETECT
 			_cone.color = Color(COLOR_DETECT, CONE_ALPHA + 0.06)
-			_label.text = "?"
+			_state_label("DETECTING", COLOR_DETECT)
 			_dset("alert_" + _ddir8(_facing))
 		State.INVESTIGATE:
 			_body.color = COLOR_ALERT
 			_cone.color = Color(COLOR_ALERT, CONE_ALPHA)
-			_label.text = "?"
+			_state_label("INVESTIGATING", COLOR_ALERT)
 			_dset("investigate_f0")
 		State.CHASE:
 			_body.color = COLOR_CHASE
 			_cone.color = Color(COLOR_CHASE, CONE_ALPHA + 0.06)
-			_label.text = "!"
+			_state_label("CHASE!", COLOR_CHASE)
 			_dset("chase_%s_f0" % _ddir8(_facing))
 		State.SEARCH:
 			_body.color = COLOR_ALERT
 			_cone.color = Color(COLOR_ALERT, CONE_ALPHA)
-			_label.text = "?"
+			_state_label("SEARCHING", COLOR_ALERT)
 			_dset("patrol_" + _ddir8(_facing))

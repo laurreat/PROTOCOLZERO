@@ -194,3 +194,15 @@ static func message(tree: SceneTree, text: String) -> void:
 	var hud := tree.get_first_node_in_group("hud")
 	if hud != null and hud.has_method("show_message"):
 		hud.show_message(text)
+
+
+## CAM-06 (Tarea 3): same label, colour-coded + prefixed by outcome.
+## kind: "ok" (green), "fail" (red), "warn" (amber), "info" (white).
+static func feedback(tree: SceneTree, text: String, kind := "info") -> void:
+	if tree == null:
+		return
+	var hud := tree.get_first_node_in_group("hud")
+	if hud != null and hud.has_method("show_feedback"):
+		hud.show_feedback(text, kind)
+	else:
+		message(tree, text)

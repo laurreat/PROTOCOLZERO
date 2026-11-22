@@ -20,7 +20,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if not _is_zero_done():
 		print("ExitZone: zero system required.")
 		Sfx.play(get_tree(), Sfx.ui_deny())
-		Sfx.message(get_tree(), "Zero system required.")
+		Sfx.feedback(get_tree(), "EXIT LOCKED — activate ZERO first", "fail")
 		return
 	player_entered.emit()
 	var tree := get_tree()

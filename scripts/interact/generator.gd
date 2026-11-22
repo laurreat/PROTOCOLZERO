@@ -62,7 +62,7 @@ func interact(player: Node2D) -> void:
 	energy_system.set_energy(false)
 	_kill_startup()
 	Sfx.play(get_tree(), Sfx.power_cut())
-	Sfx.message(get_tree(), "Power cut.")
+	Sfx.feedback(get_tree(), "POWER CUT — systems offline", "warn")
 	_emit_noise()
 	interacted.emit()
 
@@ -76,7 +76,7 @@ func _begin_repair(player: Node2D) -> void:
 	_repairing = true
 	_set_player_lock(player, true)
 	Sfx.play(get_tree(), Sfx.repair_start())
-	Sfx.message(get_tree(), "Repairing generator... hold still.")
+	Sfx.feedback(get_tree(), "REPAIRING — hold position (3 s)", "warn")
 	_play_repair_blink()
 	_run_repair(player)
 
@@ -98,7 +98,7 @@ func _run_repair(player: Node2D) -> void:
 	_kill_startup()
 	_kill_repair_blink()
 	Sfx.play(get_tree(), Sfx.generator_on())
-	Sfx.message(get_tree(), "Power restored.")
+	Sfx.feedback(get_tree(), "POWER RESTORED — terminals and doors energized", "ok")
 	_play_startup()
 	_emit_noise()
 	interacted.emit()
